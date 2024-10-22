@@ -8,6 +8,19 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const storage = new Storage({
   apiKey: process.env.GCP_API_KEY,
+  // projectId: "equalocation",
+  clientOptions: {
+    clientId: process.env.CREDENTIALS_CLIENT_ID,
+    email: process.env.CREDENTIALS_CLIENT_EMAIL,
+  },
+  // credentials: {
+  //   type: process.env.CREDENTIALS_TYPE,
+  //   project_id: process.env.CREDENTIALS_PROJECT_ID,
+  //   private_key_id: process.env.CREDENTIALS_PRIVATE_KEY_ID,
+  //   private_key: process.env.CREDENTIALS_PRIVATE_KEY,
+  //   client_email: process.env.CREDENTIALS_CLIENT_EMAIL,
+  //   client_id: process.env.CREDENTIALS_CLIENT_ID,
+  // },
 });
 
 // let isEnabled = true;
