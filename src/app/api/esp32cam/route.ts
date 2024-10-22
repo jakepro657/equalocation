@@ -25,6 +25,9 @@ export async function POST(request: NextRequest) {
   const body = await request.json();
   const { action } = body;
 
+  if (!action) {
+    return NextResponse.json({ error: "Missing action" }, { status: 400 });
+  }
   // if (action === "enable") {
   //   isEnabled = true;
   //   return NextResponse.json({ message: "Camera enabled" });

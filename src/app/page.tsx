@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, } from 'react';
 
 export default function Home() {
-  const [isEnabled, setIsEnabled] = useState(true);
+  // const [isEnabled,] = useState(true);
   const [analysis, setAnalysis] = useState('');
 
   const fetchAnalysis = () => {
@@ -61,14 +61,14 @@ export default function Home() {
       <button onClick={fetchAnalysis}>
         분석
       </button>
-      <div>
+      {/* <div>
         <h2>Camera Stream</h2>
         {isEnabled ? (
           <img src={`http://${process.env.NEXT_PUBLIC_ESP32_CAM_IP}`} alt="ESP32-CAM Stream" />
         ) : (
           <p>Camera is disabled</p>
         )}
-      </div>
+      </div> */}
       <div>
         <h2>Latest Analysis</h2>
         <p>{analysis || 'No analysis available'}</p>
