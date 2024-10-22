@@ -22,7 +22,10 @@ const storage = new Storage({
   projectId: process.env.CREDENTIALS_PROJECT_ID,
   credentials: {
     client_email: process.env.CREDENTIALS_CLIENT_EMAIL,
-    private_key: process.env.CREDENTIALS_PRIVATE_KEY,
+    private_key: (process.env.CREDENTIALS_PRIVATE_KEY as string).replace(
+      /\\n/g,
+      "\n"
+    ),
   },
 });
 
