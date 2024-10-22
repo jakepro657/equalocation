@@ -7,18 +7,7 @@ import { Storage } from "@google-cloud/storage";
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const storage = new Storage({
-  projectId: process.env.CREDENTIALS_PROJECT_ID,
-  credentials: {
-    type: process.env.CREDENTIALS_TYPE,
-    project_id: process.env.CREDENTIALS_PROJECT_ID,
-    private_key_id: process.env.CREDENTIALS_PRIVATE_KEY_ID,
-    private_key: (process.env.CREDENTIALS_PRIVATE_KEY as string).replace(
-      /\\n/g,
-      "\n"
-    ),
-    client_email: process.env.CREDENTIALS_CLIENT_EMAIL,
-    client_id: process.env.CREDENTIALS_CLIENT_ID,
-  },
+  apiKey: process.env.GCP_API_KEY,
 });
 
 // let isEnabled = true;
