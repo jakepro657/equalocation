@@ -18,13 +18,7 @@ const storage = new Storage({
     ),
     client_email: process.env.CREDENTIALS_CLIENT_EMAIL,
     client_id: process.env.CREDENTIALS_CLIENT_ID,
-    auth_uri: process.env.CREDENTIALS_AUTH_URI,
-    token_uri: process.env.CREDENTIALS_TOKEN_URI,
-    auth_provider_x509_cert_url:
-      process.env.CREDENTIALS_AUTH_PROVIDER_X509_CERT_URL,
-    client_x509_cert_url: process.env.CREDENTIALS_CLIENT_X509_CERT_URL,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } as any,
+  },
 });
 
 // let isEnabled = true;
