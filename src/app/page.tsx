@@ -6,42 +6,60 @@ export default function Home() {
   const [isEnabled, setIsEnabled] = useState(true);
   const [analysis, setAnalysis] = useState('');
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (isEnabled) {
-        fetch('/api/esp32cam', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'analyze' }),
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.analysis) {
-              setAnalysis(data.analysis);
-            }
-          })
-          .catch(err => console.error('Error:', err));
-      }
-    }, 60000); // Check every minute
-
-    return () => clearInterval(interval);
-  }, [isEnabled]);
-
-  const toggleCamera = () => {
-    const newState = !isEnabled;
-    setIsEnabled(newState);
+  const fetchAnalysis = () => {
     fetch('/api/esp32cam', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: newState ? 'enable' : 'disable' }),
-    });
-  };
+      body: JSON.stringify({ action: 'analyze' }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.analysis) {
+          setAnalysis(data.analysis);
+        }
+      })
+      .catch(err => console.error('Error:', err));
+  }
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (isEnabled) {
+  //       fetch('/api/esp32cam', {
+  //         method: 'POST',
+  //         headers: { 'Content-Type': 'application/json' },
+  //         body: JSON.stringify({ action: 'analyze' }),
+  //       })
+  //         .then(res => res.json())
+  //         .then(data => {
+  //           if (data.analysis) {
+  //             setAnalysis(data.analysis);
+  //           }
+  //         })
+  //         .catch(err => console.error('Error:', err));
+  //     }
+  //   }, 60000); // Check every minute
+
+  //   return () => clearInterval(interval);
+  // }, [isEnabled]);
+
+  // const toggleCamera = () => {
+  //   const newState = !isEnabled;
+  //   setIsEnabled(newState);
+  //   fetch('/api/esp32cam', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ action: newState ? 'enable' : 'disable' }),
+  //   });
+  // };
 
   return (
     <div>
       <h1>ESP32-CAM Control</h1>
-      <button onClick={toggleCamera}>
+      {/* <button onClick={toggleCamera}>
         {isEnabled ? 'Disable Camera' : 'Enable Camera'}
+      </button> */}
+      <button onClick={fetchAnalysis}>
+        분석
       </button>
       <div>
         <h2>Camera Stream</h2>
