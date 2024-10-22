@@ -11,9 +11,10 @@ const storage = new Storage({
     type: process.env.CREDENTIALS_TYPE,
     project_id: process.env.CREDENTIALS_PROJECT_ID,
     private_key_id: process.env.CREDENTIALS_PRIVATE_KEY_ID,
-    private_key: (process.env.CREDENTIALS_PRIVATE_KEY as string)
-      .split(String.raw`\n`)
-      .join("\n"),
+    private_key: (process.env.CREDENTIALS_PRIVATE_KEY as string).replace(
+      /\\n/g,
+      "\n"
+    ),
     client_email: process.env.CREDENTIALS_CLIENT_EMAIL,
     client_id: process.env.CREDENTIALS_CLIENT_ID,
     auth_uri: process.env.CREDENTIALS_AUTH_URI,
