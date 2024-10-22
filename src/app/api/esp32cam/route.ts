@@ -5,12 +5,15 @@ import { OpenAI } from "openai";
 import { Storage } from "@google-cloud/storage";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+const privateKey = process.env.CREDENTIALS_PRIVATE_KEY as string;
+const CREDENTIALS_PRIVATE_KEY = privateKey.replace(/\\n/g, "\n");
 const storage = new Storage({
   credentials: {
     type: process.env.CREDENTIALS_TYPE,
     project_id: process.env.CREDENTIALS_TYPE,
     private_key_id: process.env.CREDENTIALS_PRIVATE_KEY_ID,
-    private_key: process.env.CREDENTIALS_PRIVATE_KEY,
+    private_key: CREDENTIALS_PRIVATE_KEY,
     client_email: process.env.CREDENTIALS_CLIENT_EMAIL,
     client_id: process.env.CREDENTIALS_CLIENT_ID,
     universe_domain: process.env.CREDENTIALS_UNIVERSE_DOMAIN,
